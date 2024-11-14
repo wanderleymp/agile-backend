@@ -9,7 +9,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+  - ./src:/app
+
     command: sh -c "ls -la /app && cat /app/package.json && npm install && npm run start"
     networks:
       - agile-network
