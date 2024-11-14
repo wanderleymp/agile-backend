@@ -6,7 +6,7 @@ services:
     container_name: agile-backend
     working_dir: /app
     environment:
-      DATABASE_URL: postgresql://agile_user:darct99KhVLJXvnbE9eX@postgres:5432/agile_db
+      DATABASE_URL: postgresql://agile_user:agile_password@postgres:5432/agile_db
       PORT: 3000
     ports:
       - "3000:3000"
@@ -14,8 +14,10 @@ services:
       - .:/app
     command: sh -c "npm install && npm run start"
     depends_on:
-      - agile-postgres
-
+      - postgres
     networks:
-      agile-network:
-        external: true
+      - default
+
+networks:
+  default:
+    name: bridge
