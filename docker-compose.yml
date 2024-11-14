@@ -2,17 +2,15 @@ version: '3.8'
 
 services:
   agile-backend:
-    image: node:18-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: agile-backend
-    working_dir: /app
+    ports:
+      - "3000:3000"
     environment:
       DATABASE_URL: postgresql://agile_user:agile_password@postgres:5432/agile_db
       PORT: 3000
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-    command: sh -c "ls -la && ls -la /app && cat /app/package.json && npm install && npm run start"
     networks:
       - agile-network
 
